@@ -15,9 +15,9 @@ function getUsers() {
             <td>${user.email}</td>
             <td>${user.gender}</td>
             <td>${user.status}</td>
-            <td class="action-icons">
-              <i class="fa-solid fa-pen edit"></i>
-              <i class="fa-solid fa-trash delete"></i>
+            <td class="action-buttons">
+              <button class="btn-edit">Edit</button>
+              <button class="btn-delete">Delete</button>
             </td>
           </tr>
         `;
