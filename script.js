@@ -26,31 +26,17 @@ function getUsers() {
             <td class="user-gender">${user.gender.charAt(0).toUpperCase() + user.gender.slice(1)}</td>
             <td class="user-status">${user.status.charAt(0).toUpperCase() + user.status.slice(1)}</td>
             <td class="action-buttons">
-              <button class="btn-edit" data-id="${user.id}">Edit</button>
-              <button class="btn-delete" data-id="${user.id}">Delete</button>
+              <button class="btn-edit" onclick="editUser(${user.id})">Edit</button>
+              <button class="btn-delete" onclick="deleteUser(${user.id})">Delete</button>
             </td>
           </tr>
         `;
       });
-
-      attachEventListeners();
     })
     .catch(err => console.log(err));
 }
 
-function attachEventListeners() {
-  document.querySelectorAll('.btn-edit').forEach(btn => {
-    btn.addEventListener('click', editUser);
-  });
-
-  document.querySelectorAll('.btn-delete').forEach(btn => {
-    btn.addEventListener('click', deleteUser);
-  });
-}
-
-function editUser(e) {
-  const userId = e.target.dataset.id;
-  const row = document.getElementById(`user-${userId}`);
+function editUser(userId) {
   
   const name = row.querySelector('.user-name').textContent;
   const email = row.querySelector('.user-email').textContent;
@@ -92,8 +78,7 @@ function editUser(e) {
   });
 }
 
-function deleteUser(e) {
-  const userId = e.target.dataset.id;
+function deleteUser(userId) {
   
   if (!confirm('Are you sure you want to delete this user?')) return;
 
