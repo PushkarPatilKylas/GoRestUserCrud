@@ -37,45 +37,30 @@ function getUsers() {
 }
 
 function editUser(userId) {
-  
+  const row = document.getElementById(`user-${userId}`);
   const name = row.querySelector('.user-name').textContent;
   const email = row.querySelector('.user-email').textContent;
-  const gender = row.querySelector('.user-gender').textContent.toLowerCase();
-  const status = row.querySelector('.user-status').textContent.toLowerCase();
 
-  const newName = prompt('Enter new name:', name);
+  const newName = prompt('New name:', name);
   if (newName === null) return;
 
-  const newEmail = prompt('Enter new email:', email);
+  const newEmail = prompt('New email:', email);
   if (newEmail === null) return;
-
-  const newGender = prompt('Enter gender (male/female):', gender);
-  if (newGender === null) return;
-
-  const newStatus = prompt('Enter status (active/inactive):', status);
-  if (newStatus === null) return;
 
   fetch(`${API_URL}/${userId}`, {
     method: 'PUT',
     headers: defaultHeaders,
     body: JSON.stringify({
       name: newName,
-      email: newEmail,
-      gender: newGender.toLowerCase(),
-      status: newStatus.toLowerCase()
+      email: newEmail
     })
   })
-  .then(res => res.json())
-  .then(data => {
-    if (data.id) {
-      alert('User updated successfully!');
+    .then(res => res.json())
+    .then(data => {
+      alert('User updated!');
       getUsers();
-    }
-  })
-  .catch(err => {
-    console.log(err);
-    alert('Error updating user');
-  });
+    })
+    .catch(err => alert('Error updating user'));
 }
 
 function deleteUser(userId) {
