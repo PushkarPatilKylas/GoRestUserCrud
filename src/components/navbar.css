@@ -1,0 +1,17 @@
+.navbar{
+    background-color: #f0f0f0;
+    overflow: hidden;
+}
+
+.navbar>ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:flex-end;
+    list-style-type: none;
+}
+
+.navbar>ul>li{
+    display: flex;
+    margin: 1rem;
+    padding: 1rem;
+}
